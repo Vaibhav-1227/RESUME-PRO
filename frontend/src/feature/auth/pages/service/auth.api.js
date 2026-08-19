@@ -33,6 +33,14 @@ const authApi = axios.create({
   withCredentials: true,
 });
 
+authApi.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
 export async function registeruser(username, email, password) {
   try {
     const response = await authApi.post("/api/auth/register", {
@@ -40,6 +48,9 @@ export async function registeruser(username, email, password) {
       email,
       password,
     });
+    if (response.data?.token) {
+      localStorage.setItem("token", response.data.token);
+    }
     return response.data;
   } catch (err) {
     console.error("Error registering user:", err);
@@ -53,6 +64,9 @@ export async function loginuser(email, password) {
       email,
       password,
     });
+    if (response.data?.token) {
+      localStorage.setItem("token", response.data.token);
+    }
     return response.data;
   } catch (err) {
     console.error("Error logging in user:", err);
@@ -63,9 +77,11 @@ export async function loginuser(email, password) {
 export async function logoutuser() {
   try {
     const response = await authApi.get("/api/auth/logout");
+    localStorage.removeItem("token");
     return response.data;
   } catch (err) {
     console.error("Error logging out user:", err);
+    localStorage.removeItem("token");
     throw err;
   }
 }

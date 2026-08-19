@@ -1,21 +1,43 @@
-const express=require("express")
-const cookieparser=require("cookie-parser")
-const cors=require("cors")
-const app=express();
-// hm server bna yaha rhe
-app.use(cors({
-    origin: "https://resume-pro-ten.vercel.app",
-    credentials: true
-}));
-app.use(express.json())
-app.use(cookieparser())
-// reuqire all the routes here
-const authrouter=require("./routes/auth.routes");
-const interviewrouter=require("./routes/interview.routes")
-// hm api/auth/.... likhege google pe to authrouter me jis router se match krega wo open hoga chahe get ho ya post api/auth prefix hai
-app.use("/api/auth",authrouter)
-app.use("/api/interview",interviewrouter)
+const express = require("express");
+const cookieparser = require("cookie-parser");
+const cors = require("cors");
+const app = express();
 
+const allowedOrigins = [
+  "https://resume-pro-ten.vercel.app",
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "http://localhost:4173"
+];
 
+if (process.env.FRONTEND_URL) {
+  const cleanFrontendUrl = process.env.FRONTEND_URL.replace(/\/$/, "");
+  if (!allowedOrigins.includes(cleanFrontendUrl)) {
+    allowedOrigins.push(cleanFrontendUrl);
+  }
+}
 
-module.exports=app
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      const cleanOrigin = origin.replace(/\/$/, "");
+      if (allowedOrigins.includes(cleanOrigin) || cleanOrigin.endsWith(".vercel.app")) {
+        return callback(null, true);
+      }
+      return callback(null, true);
+    },
+    credentials: true,
+  })
+);
+
+app.use(express.json());
+app.use(cookieparser());
+
+const authrouter = require("./routes/auth.routes");
+const interviewrouter = require("./routes/interview.routes");
+
+app.use("/api/auth", authrouter);
+app.use("/api/interview", interviewrouter);
+
+module.exports = app;

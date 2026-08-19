@@ -43,13 +43,16 @@ async function registercontroller(req, res) {
       { expiresIn: "1d" }
     );
 
+    const isProduction = process.env.NODE_ENV === "production" || process.env.RENDER === "true" || true;
     res.cookie("token", token, {
       httpOnly: true,
-      sameSite: "lax"
+      secure: isProduction,
+      sameSite: isProduction ? "none" : "lax"
     });
 
     return res.status(201).json({
       message: "User registered successfully",
+      token,
       user: { id: user._id, username: user.username, email: user.email }
     });
   } catch (err) {
@@ -87,13 +90,16 @@ async function logincontroller(req, res) {
       { expiresIn: "1d" }
     );
 
+    const isProduction = process.env.NODE_ENV === "production" || process.env.RENDER === "true" || true;
     res.cookie("token", token, {
       httpOnly: true,
-      sameSite: "lax"
+      secure: isProduction,
+      sameSite: isProduction ? "none" : "lax"
     });
 
     return res.status(200).json({
       message: "User login successful",
+      token,
       user: { id: user._id, username: user.username, email: user.email }
     });
   } catch (err) {
