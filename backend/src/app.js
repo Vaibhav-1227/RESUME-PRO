@@ -4,9 +4,9 @@ const cors=require("cors")
 const app=express();
 // hm server bna yaha rhe
 app.use(cors({
-      origin:"http://localhost:5173",
-      credentials:true,
-}))
+    origin: "https://resume-pro-ten.vercel.app",
+    credentials: true
+}));
 app.use(express.json())
 app.use(cookieparser())
 // reuqire all the routes here
