@@ -29,7 +29,7 @@
 import axios from "axios";
 
 const authApi = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://resume-pro-7yxu.onrender.com",
   withCredentials: true,
 });
 
