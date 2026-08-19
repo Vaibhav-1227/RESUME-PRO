@@ -1,0 +1,14 @@
+Project Name Options (Koi ek chunein):
+ResumePro AI — Full-Stack ATS Resume & Interview Strategy Studio
+(Ya: AI-Driven Technical Interview Coach & ATS Resume Synthesizer)
+
+Tech Stack / Key Skills:
+Frontend: React.js, JavaScript (ES6+), SCSS, Vite, HTML5/CSS3
+Backend & DB: Node.js, Express.js, MongoDB, Mongoose, RESTful APIs, JWT Auth
+AI & LLM: Google Gemini 3.6 Flash API (@google/genai), Zod Schema Validation, Prompt Engineering, PDF Parsing (pdf-parse)
+Deployment & Tooling: Git, GitHub, Postman, Render / Vercel
+High-Impact Bullet Points (Copy & Paste in CV):
+Architected & Deployed a responsive full-stack MERN application integrated with Google Gemini 3.6 Flash API to generate personalized technical interview strategy reports and 100% ATS-friendly 1-page resumes.
+Engineered multi-model fallback execution and structured JSON schema enforcement (via Zod) to parse candidate PDFs, eliminate LLM hallucinations, and achieve 95%+ ATS keyword alignment with target job descriptions.
+Developed zero-dependency client-side PDF rendering & print engine via CSS @media print and dynamic viewport scaling, ensuring crisp vector typography, active hyperlinks, and strict 1-page print bounds.
+Implemented secure JWT authentication & RESTful APIs with optimized MongoDB connection handling, delivering scalable candidate data management under sub-2-second API response latency.

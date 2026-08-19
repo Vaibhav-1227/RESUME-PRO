@@ -1,0 +1,19 @@
+hm register bnaye login bnaye logout ka ky to kuch log ky krt hai logout k liye client k pass jo cookei rehte hai usko dlt kr dete hai prr man lo tumhara cookie koi aur chura liya hu tum asa original userlogin kiye aur logout ki request kiya aur server ek begginer bnaya haiwo ky krega tumhare cookie ko dlt kr dega pr agar kisi aur k pas rha to wo to access kr lega na esliye we use token blacklist esme server ek list bnatahai token ka jisme jis token ko dlt krna hota hai usko rkh leta hai ab jb bhi koi token aayega to phle list se compare krta hai agar mil gya listme to unauthorise bol deta hai aur ni mila to access deta hai ab hm ye kaam krega databasse mongoose k trhough pr esko best kr sakte hai uski radix qki uska throuput jada hai
+
+
+
+react router hamara ky krta hai ki m alag alag ui dikhate hai apne route pe for exampe login ka alg ui register ka alag ui ye recat router k through hota hai
+
+
+4layer architecture
+layer
+|
+ui 1 pages 2c component
+esme hm bs page k sb likhgee ki fronted pe ky show krna hai 
+
+api->services->auth.api.js eske andarkaise hmara backend me jo 4 api bnaye hai wo fronted se kaise communicate krega services folder auth k andr hi bnega
+
+state ->auth.context.jsx user k data ko  store krke rkhna ye state me aata hai ye state layer me hota hai
+
+
+hookes -> api aur state ko manage krne k liye hm hook layer ka use krte hai
